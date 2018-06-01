@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncTask", "AsyncTask\AsyncTask.csproj", "{9DB72AD0-B614-402A-989D-7604E5D93D58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeNumberApp", "PrimeNumberApp\PrimeNumberApp.csproj", "{D0AA55D3-29D4-4FFD-96B3-2ADAE9EBE6EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9DB72AD0-B614-402A-989D-7604E5D93D58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DB72AD0-B614-402A-989D-7604E5D93D58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DB72AD0-B614-402A-989D-7604E5D93D58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DB72AD0-B614-402A-989D-7604E5D93D58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0AA55D3-29D4-4FFD-96B3-2ADAE9EBE6EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0AA55D3-29D4-4FFD-96B3-2ADAE9EBE6EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0AA55D3-29D4-4FFD-96B3-2ADAE9EBE6EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0AA55D3-29D4-4FFD-96B3-2ADAE9EBE6EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B23DB35-D3D4-42F8-ADE9-7BD3332A7994}
+	EndGlobalSection
+EndGlobal
