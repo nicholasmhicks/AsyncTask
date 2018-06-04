@@ -11,17 +11,43 @@ namespace AsyncTask
     {
         static void Main(string[] args)
         {
-            var task = FindPrimeAsync();
+            FindPrime();
             Console.ReadKey();
         }
 
-        public static async Task FindPrimeAsync()
+        public static async Task FindPrimeMultiThread() //12 seconds
         {
 
-            var a = await Task.Run(() => PrimeCounter.Prime(250000));
-            var b = await Task.Run(() => PrimeCounter.Prime(400000));
+            var a = await Task.Run(() => PrimeCounter.PrimeLong(250000));
+
             Console.WriteLine(a);
+
+            var b = await Task.Run(() => PrimeCounter.PrimeLong(400000));
+
+            Console.WriteLine(b);
+        }
+        public static async void FindPrimeAsync() // 14 seconds
+        {
+
+            var a = await PrimeCounter.PrimeTaskLong(250000);
+
+            Console.WriteLine(a);
+
+            var b = await PrimeCounter.PrimeTaskLong(400000);
+
+            Console.WriteLine(b);
+        }
+
+        public static void FindPrime() // 14 seconds
+        {
+            var a = PrimeCounter.PrimeLong(250000);
+            Console.WriteLine(a);
+
+            var b = PrimeCounter.PrimeLong(400000);
+
+            
             Console.WriteLine(b);
         }
     }
 }
+
