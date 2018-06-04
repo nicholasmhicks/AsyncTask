@@ -35,7 +35,7 @@ namespace AsyncTask
             }
             return (--a);
         }
-        public static async Task<long> PrimeTaskLong(int primeNumber)
+        public static Task<long> PrimeTaskLong(int primeNumber)
         {
             int count = 0;
             long a = 2;
@@ -60,7 +60,7 @@ namespace AsyncTask
                 a++;
             }
             var v = --a;
-            return v;
+            return Task.FromResult(v);
         }
     }
 }

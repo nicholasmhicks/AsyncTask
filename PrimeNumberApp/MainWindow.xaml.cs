@@ -18,7 +18,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.IO;
 using System.Runtime.Serialization;
-
+using Newtonsoft.Json;
 
 namespace PrimeNumberApp
 {
@@ -31,28 +31,84 @@ namespace PrimeNumberApp
 
         public MainWindow()
         {
+
+        }
+
+        private async void GetJSon(object sender, RoutedEventArgs e)
+        {
+            JSonTextBox.Content = await DownloadPageAsync();
+        }
+
+        private void GenerateRandomNumber(object sender, RoutedEventArgs e)
+        {
+            Random r = new Random();
+            RandomNumber.Content = r.Next(1, 100).ToString();
+        }
+
+        public static async Task<string> DownloadPageAsync()
+        {
             
+            // ... Target page.
+            string page = "https://jsonplaceholder.typicode.com/posts/1/comments";
+
+            // ... Use HttpClient.
+            using (HttpClient client = new HttpClient())
+            using (HttpResponseMessage response = await client.GetAsync(page))
+            using (HttpContent content = response.Content)
+            {
+                // ... Read the string.
+                string result = await content.ReadAsStringAsync();
+
+                // ... Display the result.
+                if (result != null)
+                {
+                     return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private async void CalculatePrimeNumber(object sender, RoutedEventArgs e)
         {
-            var uri = new Uri("https://jsonplaceholder.typicode.com/posts/1/comments");
-            Stream respStream = await client.GetStreamAsync(uri);
-
-
+            this.Dispatcher.Invoke((Action)(async () =>
+            {//this refer to form in WPF application 
+                var PrimeNumber = await Task.Run(() => PrimeCounter.PrimeLong(Int32.Parse(PrimeTextBox.Text)));
+                PrimeTextBox.Text = PrimeNumber.ToString();
+            })); 
+           
+                
         }
-        public async Task<string> GetResponseString(string text)
+
+
+        public Task<long> CalculatePrimeNumber(int primeNumber)
         {
-            var httpClient = new HttpClient();
+            int count = 0;
+            long a = 2;
+            while (count < primeNumber)
+            {
+                long b = 2;
+                int prime = 1;
 
-            var parameters = new Dictionary<string, string>();
-            parameters["text"] = text;
-
-            var response = await httpClient.PostAsync(new Uri("https://jsonplaceholder.typicode.com/posts/1/comments"), new FormUrlEncodedContent(parameters));
-            var contents = await response.Content.ReadAsStringAsync();
-
-            return contents;
+                while (b * b <= a)
+                {
+                    if (a % b == 0)
+                    {
+                        prime = 0;
+                        break;
+                    }
+                    b++;
+                }
+                if (prime > 0)
+                {
+                    count++;
+                }
+                a++;
+            }
+            var v = --a;
+            return Task.FromResult(v);
         }
-
     }
 }
