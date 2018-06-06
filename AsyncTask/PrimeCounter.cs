@@ -62,5 +62,33 @@ namespace AsyncTask
             var v = --a;
             return Task.FromResult(v);
         }
+
+        public static async Task<long> PrimeTaskLongAsync(int primeNumber)
+        {
+            int count = 0;
+            long a = 2;
+            while (count < primeNumber)
+            {
+                long b = 2;
+                int prime = 1;
+
+                while (b * b <= a)
+                {
+                    if (a % b == 0)
+                    {
+                        prime = 0;
+                        break;
+                    }
+                    b++;
+                }
+                if (prime > 0)
+                {
+                    count++;
+                }
+                a++;
+            }
+            var v = --a;
+            return v;
+        }
     }
 }

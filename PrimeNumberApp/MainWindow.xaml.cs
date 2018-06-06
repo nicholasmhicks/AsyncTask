@@ -73,11 +73,15 @@ namespace PrimeNumberApp
 
         private async void CalculatePrimeNumber(object sender, RoutedEventArgs e)
         {
-            this.Dispatcher.Invoke((Action)(async () =>
-            {//this refer to form in WPF application 
-                var PrimeNumber = await Task.Run(() => PrimeCounter.PrimeLong(Int32.Parse(PrimeTextBox.Text)));
-                PrimeTextBox.Text = PrimeNumber.ToString();
-            })); 
+            string s = PrimeTextBox.Text;
+
+            //Task t = new Task(() => PrimeTaskLongAsync(Int32.Parse(s)));
+            //t.Start();
+            long res = await PrimeTaskLongAsync(Int32.Parse(s));
+
+            PrimeTextBox.Text = res.ToString();
+            //var PrimeNumber = await PrimeCounter.PrimeTaskLongAsync(Int32.Parse(PrimeTextBox.Text));
+            //PrimeTextBox.Text = PrimeNumber.ToString();
            
                 
         }
@@ -110,5 +114,34 @@ namespace PrimeNumberApp
             var v = --a;
             return Task.FromResult(v);
         }
+
+        public static async Task<long> PrimeTaskLongAsync(int primeNumber)
+        {
+            int count = 0;
+            long a = 2;
+            while (count < primeNumber)
+            {
+                long b = 2;
+                int prime = 1;
+
+                while (b * b <= a)
+                {
+                    if (a % b == 0)
+                    {
+                        prime = 0;
+                        break;
+                    }
+                    b++;
+                }
+                if (prime > 0)
+                {
+                    count++;
+                }
+                a++;
+            }
+            var v = --a;
+            return v;
+        }
     }
 }
+
